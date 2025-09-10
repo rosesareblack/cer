@@ -1,7 +1,8 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { urls } from "./urls";
 import UrlButton from "./UrlButton";
-import { Card, ICard } from "./Card";
+import { Card, CardContent, CardFooter } from "../../components/ui/card";
+import ReactMarkdown from "react-markdown";
 import { clearIndex, crawlDocument } from "./utils";
 
 import { Button } from "./Button";
@@ -121,7 +122,25 @@ export const Context: React.FC<ContextProps> = ({ className, selected }) => {
       <div className="flex flex-wrap w-full">
         {cards &&
           cards.map((card, key) => (
-            <Card key={key} card={card} selected={selected} />
+            <Card
+              key={key}
+              className={`w-full p-5 m-2 ${
+                selected && selected.includes(card.metadata.hash)
+                  ? "bg-accent" // Using shadcn/ui accent color for selected
+                  : "bg-card" // Using shadcn/ui card background color
+              } ${
+                selected && selected.includes(card.metadata.hash)
+                  ? "border-double border-4 border-primary" // Using shadcn/ui primary color for border
+                  : "opacity-60 hover:opacity-80 transition-opacity duration-300 ease-in-out"
+              }`}
+            >
+              <CardContent>
+                <ReactMarkdown>{card.pageContent}</ReactMarkdown>
+              </CardContent>
+              <CardFooter>
+                <b className="text-xs">{card.metadata.hash}</b>
+              </CardFooter>
+            </Card>
           ))}
       </div>
     </div>
