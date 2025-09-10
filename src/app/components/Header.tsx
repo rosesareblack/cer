@@ -5,22 +5,22 @@ import VercelLogo from "../../../public/vercel.svg";
 export default function Header({ className }: { className?: string }) {
   return (
     <header
-      className={`flex items-center justify-center text-gray-200 text-2xl ${className}`}
+      className={`flex items-center justify-center p-4 border-b ${className}`}
     >
       <Image
         src={PineconeLogo}
         alt="pinecone-logo"
         width="230"
         height="50"
-        className="ml-3"
+        className="mx-2"
       />{" "}
-      <div className="text-4xl ml-3 mr-3">+</div>
+      <div className="text-4xl mx-2">+</div>
       <Image
         src={VercelLogo}
         alt="vercel-logo"
         width="160"
         height="50"
-        className="mr-3 mt-3"
+        className="mx-2"
       />
     </header>
   );
